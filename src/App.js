@@ -1,24 +1,56 @@
-import logo from './logo.svg';
+import Header from './Components/Header';
+import { Balance } from './Components/Balance';
+import { IncomeExpenses } from './Components/IncomeExpenses';
+import { History } from './History';
+import { AddTransaction } from './Components/AddTransaction';
+import { makeStyles } from '@material-ui/core'
 import './App.css';
+import { GlobalProvider } from './Components/Context/GlobalState';
+
+const styles = makeStyles({
+
+ bigSpace :{
+
+  paddingTop:"5rem"
+
+ },
+
+ smallSpace :{
+
+  paddingTop:"2.5rem"
+ },
+
+ microSpace :{
+
+  paddingTop:"1.3rem"
+
+ }
+
+
+})
 
 function App() {
+
+  const classes= styles();
+
   return (
+    <GlobalProvider>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <Header />
+     <div className="container">
+       <div className={classes.smallSpace}>
+       <Balance />
+       </div>
+       <div className={classes.smallSpace}>
+       <IncomeExpenses />
+       </div>
+       <div className={classes.microSpace}>
+       <History />
+       </div>
+       <AddTransaction />
+     </div>
     </div>
+    </GlobalProvider>
   );
 }
 
